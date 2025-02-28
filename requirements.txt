@@ -5,3 +5,4 @@ streamlit
 requests
 numpy
 openpyxl
+XlsxWriter
