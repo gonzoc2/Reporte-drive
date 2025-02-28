@@ -7,8 +7,6 @@ import OTMrunReport as rr
 import requests
 from datetime import datetime, date, timedelta
 import numpy as np
-import json
-from google.oauth2.service_account import Credentials
 
 # Conectar a Google Sheets
 def authenticate_gsheet(json_file, spreadsheet_name):
@@ -362,7 +360,7 @@ if len(mes_seleccionado) == 1:
     elif opcion == "Incluir provisiones cierre de mes(ingresos gaby)":
         st.write("Las provisiones de cierre de mes serán incluidas en el DataFrame.")
 
-        df_filtrado = df_filtrado[~(df_filtrado['Categoria_A'] == 'FLETES')]
+        f_filtrado = df_filtrado[~((df_filtrado['Categoria_A'] == 'FLETES') & (df_filtrado['Proyecto_A'].isin([1003, 7806])))]
         df_filtrado = df_filtrado[~(df_filtrado['CeCo_A'] == 50)]
 
         df_filtrado = df_filtrado[~((df_filtrado['Proyecto_A'] == 1001) & (df_filtrado['Cuenta_A'] == 510100001))]
@@ -381,7 +379,7 @@ if len(mes_seleccionado) == 1:
 
         df_provisiones = df_provisiones[df_provisiones['Categoria_A'] != 'INGRESO']
 
-        cuentas__quitar_provisiones = [510100003, 510100004, 510100005, 510100010, 510100018 , 510100023 , 510100040, 
+        cuentas__quitar_provisiones = [510100003, 510100004, 510100005, 510100010, 510100018 , 510100023 , 510100040, 510100056, 511121000,
                                        510100057, 510100058, 510100012, 510100011, 510100002,  511086000, 510100070, 511082000, 510100039]
         df_provisiones = df_provisiones[~df_provisiones['Cuenta_A'].isin(cuentas__quitar_provisiones)]
         df_provisiones = df_provisiones[~((df_provisiones['Categoria_A'] == 'FLETES') & (~df_provisiones['Proyecto_A'].isin([1003,7806])))]
@@ -396,6 +394,7 @@ if len(mes_seleccionado) == 1:
         df_filtrado = df_filtrado[~(df_filtrado['Categoria_A'] == 'INGRESO')]
 
         df_filtrado = df_filtrado[~((df_filtrado['Categoria_A'] == 'FLETES') & (df_filtrado['Proyecto_A'].isin([1003, 7806])))]
+        df_filtrado = df_filtrado[~(df_filtrado['Categoria_A'] == 'FLETES')]
 
         df_filtrado = df_filtrado[~(df_filtrado['CeCo_A'] == 50)]
 
@@ -413,7 +412,7 @@ if len(mes_seleccionado) == 1:
 
         df_filtrado = df_filtrado[~((df_filtrado['Proyecto_A'] == 3201) & (df_filtrado['Cuenta_A'] == 510100001))]
 
-        cuentas__quitar_provisiones = [510100003, 510100004, 510100005, 510100010, 510100018 , 510100023 , 510100040, 
+        cuentas__quitar_provisiones = [510100003, 510100004, 510100005, 510100010, 510100018 , 510100023 , 510100040, 510100056, 511121000,
                                        510100057, 510100058, 510100012, 510100011, 510100002,  511086000, 510100070, 511082000, 510100039]
         df_provisiones = df_provisiones[~df_provisiones['Cuenta_A'].isin(cuentas__quitar_provisiones)]
         df_provisiones = df_provisiones[~((df_provisiones['Categoria_A'] == 'FLETES') & (~df_provisiones['Proyecto_A'].isin([1003,7806])))]
