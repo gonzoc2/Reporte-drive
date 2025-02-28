@@ -7,7 +7,7 @@ import OTMrunReport as rr
 import requests
 from datetime import datetime, date, timedelta
 import numpy as np
-
+import json
 
 # Conectar a Google Sheets
 def authenticate_gsheet(json_file, spreadsheet_name):
