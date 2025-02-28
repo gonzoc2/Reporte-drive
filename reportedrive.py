@@ -8,6 +8,7 @@ import requests
 from datetime import datetime, date, timedelta
 import numpy as np
 import json
+from google.oauth2.service_account import Credentials
 
 # Conectar a Google Sheets
 def authenticate_gsheet(json_file, spreadsheet_name):
