@@ -7,6 +7,9 @@ import OTMrunReport as rr
 import requests
 from datetime import datetime, date, timedelta
 import numpy as np
+from google.oauth2.service_account import Credentials
+import json
+
 
 # Conectar a Google Sheets
 def authenticate_gsheet(json_file, spreadsheet_name):
@@ -57,9 +60,11 @@ st.title("Subir DataFrame a Google Sheets")
 
 # Cargar credenciales desde Streamlit Secrets
 service_account_info = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
+
+# Crear credenciales
 credentials = Credentials.from_service_account_info(service_account_info)
 
-# Autenticar con Google Sheets
+# Autenticación con Google Sheets
 client = gspread.authorize(credentials)
 spreadsheet_name = "base real 2025"
 
