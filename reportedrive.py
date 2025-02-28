@@ -7,6 +7,7 @@ import OTMrunReport as rr
 import requests
 from datetime import datetime, date, timedelta
 import numpy as np
+import os
 
 # Conectar a Google Sheets
 def authenticate_gsheet(json_file, spreadsheet_name):
@@ -55,8 +56,11 @@ def get_invalid_rows(dataframe):
 # Título de la app
 st.title("Subir DataFrame a Google Sheets")
 
-# Ruta a las credenciales JSON y nombre de la hoja
-json_file = "C:\\Users\\preyes\\Desktop\\pagina web esgari\\entorno virtual app 2.0\\myenv_bueno\\base-de-datos-447317-f225fb9c4daf.json"
+# Obtiene el directorio donde está el script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Crea la ruta al archivo JSON dentro de la carpeta `config`
+json_file = os.path.join(BASE_DIR, "config", "base-de-datos-447317-f225fb9c4daf.json")
 spreadsheet_name = "base real 2025"
 
 provisiones = 'https://docs.google.com/spreadsheets/d/1NjwDNiOgdiRXRIe0C0ksfS0t2ImJW9yC/export?format=xlsx'
