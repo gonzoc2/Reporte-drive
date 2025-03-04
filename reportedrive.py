@@ -80,7 +80,7 @@ def get_invalid_rows(dataframe):
 st.title("Subir DataFrame a Google Sheets")
 
 # Cargar credenciales desde Streamlit Secrets
-service_account_info = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
+service_account_info = st.secrets["google_service_account"]
 
 # Crear credenciales
 credentials = Credentials.from_service_account_info(service_account_info)
